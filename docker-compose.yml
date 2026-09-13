@@ -11,7 +11,7 @@ services:
       - /lib/modules:/lib/modules:ro
     ports:
       - "51820:51820/udp"
-      - "51821:51821/tcp"
+      - "51821:51821/tcp" # WebUI
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -30,6 +30,8 @@ services:
     volumes:
       - ./adguard/work:/opt/adguardhome/work
       - ./adguard/conf:/opt/adguardhome/conf
+    expose:
+      - "3000" # WebUI, accessibile solo dalla rete Docker
     networks:
       wireguard-adguard:
         ipv4_address: 10.0.0.11
